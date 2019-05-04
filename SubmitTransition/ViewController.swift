@@ -1,4 +1,5 @@
 import UIKit
+import TKSubmitTransition
 
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     var btn: TKTransitionSubmitButton!
@@ -15,13 +16,16 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
         btn = TKTransitionSubmitButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 64, height: 44))
         btn.center = self.view.center
-        btn.frame.bottom = self.view.frame.height - 60
-        btn.setTitle("Sign in", for: UIControlState())
+        btn.backgroundColor = #colorLiteral(red: 1, green: 0.2, blue: 0.4, alpha: 1)
+        btn.layer.cornerRadius = 22
+        btn.layer.masksToBounds = true
+        btn.frame.bottom = self.view.frame.size.height - 60
+        btn.setTitle("Sign in", for: UIControl.State.normal)
         btn.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        btn.addTarget(self, action: #selector(ViewController.onTapButton(_:)), for: UIControlEvents.touchUpInside)
+        btn.addTarget(self, action: #selector(ViewController.onTapButton(_:)), for: UIControl.Event.touchUpInside)
         self.view.addSubview(btn)
 
-        self.view.bringSubview(toFront: self.btnFromNib)
+        self.view.bringSubviewToFront(self.btnFromNib)
     }
 
     @IBAction func onTapButton(_ button: TKTransitionSubmitButton) {
